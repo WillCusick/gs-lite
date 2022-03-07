@@ -45,27 +45,27 @@ form, #result {
 const inputs = [attackpercent, attack, defencepercent, defence, healthpercent, health, critchance, critdamage, speed, effpercent, erpercent];
 
 function colorinputs() {
-	inputs.forEach(el => el.className = ((parseInt(el.value, 10) || 0) > 0 ? 'active-input' : 'inactive-input'));
+  inputs.forEach(el => el.className = ((parseInt(el.value, 10) || 0) > 0 ? 'active-input' : 'inactive-input'));
 }
 
 function parseinput(value) {
-	return Math.max(0, parseInt(value, 10) || 0);
+  return Math.max(0, parseInt(value, 10) || 0);
 }
-
+	
 function update() {
-	colorinputs();
+  colorinputs();
 
   const atkper = parseinput(attackpercent.value);
-	const atk = parseinput(attack.value);
-	const defper = parseinput(defencepercent.value);
-	const def = parseinput(defence.value);
-	const hpper = parseinput(healthpercent.value);
-	const hp = parseinput(health.value);
-	const cc = parseinput(critchance.value);
-	const cd = parseinput(critdamage.value);
-	const spd = parseinput(speed.value);
-	const eff = parseinput(effpercent.value);
-	const er = parseinput(erpercent.value);
+  const atk = parseinput(attack.value);
+  const defper = parseinput(defencepercent.value);
+  const def = parseinput(defence.value);
+  const hpper = parseinput(healthpercent.value);
+  const hp = parseinput(health.value);
+  const cc = parseinput(critchance.value);
+  const cd = parseinput(critdamage.value);
+  const spd = parseinput(speed.value);
+  const eff = parseinput(effpercent.value);
+  const er = parseinput(erpercent.value);
 
   // flat stat weights and wss calculation copyright Fribbels: https://github.com/fribbels/Fribbels-Epic-7-Optimizer
   const atkweight = 3.46/38;
@@ -82,15 +82,18 @@ function update() {
   outputsupportwss.value = Math.round(supportwss);
   outputcombatwss.value = Math.round(combatwss);
 }
-inputs.forEach(el => el.addEventListener('change', update));
 
 function clear() {
-	inputs.forEach(el => el.value = 0);
+  inputs.forEach(el => el.value = 0);
   colorinputs();
 }
-clearbtn.addEventListener('click', clear);
 
-update();
+document.addEventListener('DOMContentLoaded', function() {
+  inputs.forEach(el => el.addEventListener('change', update));
+  clearbtn.addEventListener('click', clear);
+
+  update();
+}, false);
 </script>
 </head>
 <body>
