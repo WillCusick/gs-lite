@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function clear() {
     inputs.forEach(el => el.value = 0);
-    colorinputs();
+    update();
   }
 
   inputs.forEach(el => el.addEventListener('change', update));
