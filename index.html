@@ -1,0 +1,102 @@
+<html>
+<head>
+<title>Fribbels GS-list</title>
+</head>
+<body>
+<h1>
+Fribbels GS-lite
+</h1>
+
+<p>
+  Gear score calulcator based on Fribbels Gear Optimizer available at <a href="https://github.com/fribbels/Fribbels-Epic-7-Optimizer">https://github.com/fribbels/Fribbels-Epic-7-Optimizer</a>
+</p>
+<br/>
+
+<form>
+  <div>
+    <label>Attack %</label>
+    <br/>
+    <input id="attackpercent" type="number" min="0" max="56" value="0"/>
+  </div>
+  <div>
+    <label>Attack</label>
+    <br/>
+    <input id="attack" type="number" min="0" max="329" value="0"/>
+  </div>
+  <div>
+    <label>Defence %</label>
+    <br/>
+    <input id="defencepercent" type="number" min="0" max="56" value="0"/>
+  </div>
+  <div>
+    <label>Defence</label>
+    <br/>
+    <input id="defence" type="number" min="0" max="238" value="0"/>
+  </div>
+  <div>
+    <label>Health %</label>
+    <br/>
+    <input id="healthpercent" type="number" min="0" max="56" value="0"/>
+  </div>
+  <div>
+    <label>Health</label>
+    <br/>
+    <input id="health" type="number" min="0" max="1414" value="0"/>
+  </div>
+  <div>
+    <label>Crit Chance %</label>
+    <br/>
+    <input id="critchance" type="number" min="0" max="36" value="0"/>
+  </div>
+  <div>
+    <label>Crit Damage %</label>
+    <br/>
+    <input id="critdamage" type="number" min="0" max="48" value="0"/>
+  </div>
+  <div>
+    <label>Speed</label>
+    <br/>
+    <input id="speed" type="number" min="0" max="35" value="0"/>
+  </div>
+  <div>
+    <label>Effectiveness %</label>
+    <br/>
+    <input id="effpercent" type="number" min="0" max="56" value="0"/>
+  </div>
+  <div>
+    <label>Effect Resistance %</label>
+    <br/>
+    <input id="erpercent" type="number" min="0" max="56" value="0"/>
+  </div>
+</form>
+
+<br/>
+<input type="button" id="clearbtn" value="Clear"/>
+
+<div>
+  <h2>Result</h2>
+  <div id="result">
+    <div>
+      <label>Gear Score:</label>
+      <br/>
+      <input id="outputwss" value="0" disabled/>
+    </div>
+    <div>
+      <label>DPS Gear Score:</label>
+      <br/>
+      <input id="outputdpswss" value="0" disabled/>
+    </div>
+    <div>
+      <label>Support Gear Score:</label>
+      <input id="outputsupportwss" value="0" disabled/>
+      <br/>
+    </div>
+    <div>
+      <label>Combat Gear Score:</label>
+      <input id="outputcombatwss" value="0" disabled/>
+      <br/>
+    </div>
+  </div>
+</div>
+</body>
+</html>
