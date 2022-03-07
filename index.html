@@ -1,6 +1,97 @@
 <html>
 <head>
 <title>Fribbels GS-list</title>
+<meta charset="utf-8" />
+<style type="text/css" media="screen">
+body {
+  font-family: sans-serif;
+  color: #6af;
+  background-color: #20262e;
+  padding-left: 30px;
+}
+
+label {
+  color: #ccc;
+}
+
+input {
+  width: 8em;
+  border-style: none;
+  background-color: black;
+  color: #ccc;
+  padding: 5px;
+  margin: 3px;
+}
+
+h2 {
+  margin-top: 30px;
+}
+
+form, #result {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.active-input {
+  background-color: #333;
+}
+
+.inactive-input {
+  background-color: black;
+}
+</style>
+<script type="text/javascript">
+const inputs = [attackpercent, attack, defencepercent, defence, healthpercent, health, critchance, critdamage, speed, effpercent, erpercent];
+
+function colorinputs() {
+	inputs.forEach(el => el.className = ((parseInt(el.value, 10) || 0) > 0 ? 'active-input' : 'inactive-input'));
+}
+
+function parseinput(value) {
+	return Math.max(0, parseInt(value, 10) || 0);
+}
+
+function update() {
+	colorinputs();
+
+  const atkper = parseinput(attackpercent.value);
+	const atk = parseinput(attack.value);
+	const defper = parseinput(defencepercent.value);
+	const def = parseinput(defence.value);
+	const hpper = parseinput(healthpercent.value);
+	const hp = parseinput(health.value);
+	const cc = parseinput(critchance.value);
+	const cd = parseinput(critdamage.value);
+	const spd = parseinput(speed.value);
+	const eff = parseinput(effpercent.value);
+	const er = parseinput(erpercent.value);
+
+  // flat stat weights and wss calculation copyright Fribbels: https://github.com/fribbels/Fribbels-Epic-7-Optimizer
+  const atkweight = 3.46/38;
+  const defweight = 4.99/31;
+  const hpweight = 3.09/174;
+
+  const wss = atkper + defper + hpper + er + eff + spd * (8.0/4.0) + cd * (8.0/7.0) + cc * (8.0/5.0) + atk * atkweight + def * defweight + hp * hpweight;
+  const dpswss = atkper + spd * (8.0/4.0) + cd * (8.0/7.0) + cc * (8.0/5.0) + atk * atkweight;
+  const supportwss = defper + hpper + er + spd * (8.0/4.0) + def * defweight + hp * hpweight;
+  const combatwss = atkper + defper + hpper + spd * (8.0/4.0) + cd * (8.0/7.0) + cc * (8.0/5.0) + atk * atkweight + def * defweight + hp * hpweight;
+  
+  outputwss.value = Math.round(wss);
+  outputdpswss.value = Math.round(dpswss);
+  outputsupportwss.value = Math.round(supportwss);
+  outputcombatwss.value = Math.round(combatwss);
+}
+inputs.forEach(el => el.addEventListener('change', update));
+
+function clear() {
+	inputs.forEach(el => el.value = 0);
+  colorinputs();
+}
+clearbtn.addEventListener('click', clear);
+
+update();
+</script>
 </head>
 <body>
 <h1>
